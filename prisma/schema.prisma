@@ -25,6 +25,6 @@ model Contact {
 
 model Newsletter {
   id           Int      @id @default(autoincrement())
-  email        String   @unique
+  email        String   
   subscribedAt DateTime @default(now())
 }
