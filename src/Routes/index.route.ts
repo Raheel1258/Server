@@ -1,6 +1,6 @@
 import { Router, Request, Response } from 'express';
-import { createContactForm } from 'Controller/ContactForm.controller';
-import { createNewsLetter } from 'Controller/NewsLetter.Controller';
+import { createContactForm } from '../Controller/ContactForm.controller';
+import { createNewsLetter } from '../Controller/NewsLetter.Controller';
 const router = Router();
 
 router.get('/', (req: Request, res: Response) => {

@@ -1,9 +1,3 @@
-/**
- * @param statusCode - The status code of the error
- * @param message - The message of the error
- * @param errors - The errors of the error
- * @param stack - The stack of the error
- */
 class ApiError extends Error {
   public statusCode: number;
   public data: unknown;
