@@ -18,4 +18,3 @@ async function StartServer() {
 StartServer()
   .catch((error) => console.log(error))
   .finally(() => PrismaConnection.$disconnect());
-

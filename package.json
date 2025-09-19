@@ -16,8 +16,7 @@
     "prisma:generate": "prisma generate",
     "prisma:migrate": "prisma migrate dev",
     "prisma:deploy": "prisma migrate deploy",
-    "prisma:seed": "prisma db seed",
-    "prepare": "husky"
+    "prisma:seed": "prisma db seed"
   },
   "dependencies": {
     "@neondatabase/serverless": "^1.0.1",
@@ -38,7 +37,6 @@
     "eslint": "^9.35.0",
     "eslint-plugin-react": "^7.37.5",
     "globals": "^16.4.0",
-    "husky": "^9.1.7",
     "jiti": "^2.5.1",
     "prettier": "3.6.2",
     "prisma": "^6.16.2",
