@@ -1,5 +1,5 @@
 #Prisma Migrate Comand
-npx prisma migrate dev --name Test-task
+ pnpm prisma:migrate
 
 #Generate Command  
-npx prisma generate
+pnpm prisma:generate
