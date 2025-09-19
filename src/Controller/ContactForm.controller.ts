@@ -1,7 +1,7 @@
-import prisma from 'DB/Connection';
+import prisma from '../DB/Connection';
 import { Request, Response } from 'express';
-import contactSchema from 'Schema/Contactform.Schema';
-import { ApiResponse } from 'Utils/ApiResponse';
+import contactSchema from '../Schema/Contactform.Schema';
+import { ApiResponse } from '../Utils/ApiResponse';
 
 export const createContactForm = async (req: Request, res: Response) => {
   try {

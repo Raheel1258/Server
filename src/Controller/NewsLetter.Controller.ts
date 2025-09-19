@@ -1,8 +1,8 @@
-import prisma from 'DB/Connection';
+import prisma from '../DB/Connection';
 import { Request, Response, NextFunction } from 'express';
-import newsletterSchema from 'Schema/Newsletter.Schema';
-import { ApiResponse } from 'Utils/ApiResponse';
-import { ApiError } from 'Utils/ApiError';
+import newsletterSchema from '../Schema/Newsletter.Schema';
+import { ApiResponse } from '../Utils/ApiResponse';
+import { ApiError } from '../Utils/ApiError';
 
 export const createNewsLetter = async (req: Request, res: Response, next: NextFunction) => {
   try {
