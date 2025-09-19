@@ -1,5 +1,5 @@
 import dotenv from 'dotenv';
-import { app } from '../src/App';
+import { app } from './App';
 import PrismaConnection from './DB/Connection.js';
 
 // Environment variable configuration
