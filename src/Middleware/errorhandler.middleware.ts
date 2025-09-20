@@ -1,7 +1,7 @@
-import { Request, Response, NextFunction } from "express";
+import { Request, Response } from "express";
 import { ApiError } from "../Utils/ApiError";
 
-const errorHandler = ( err: Error,_req: Request,res: Response, _next: NextFunction) => {
+const errorHandler = (err: Error, _req: Request, res: Response) => {
   if (err instanceof ApiError) {
     return res.status(err.statusCode).json({
       success: err.success,
