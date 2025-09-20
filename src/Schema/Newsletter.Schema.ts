@@ -1,9 +1,8 @@
 import { z } from 'zod';
+import { emailValidator } from '../Utils/validators';
 
 const newsletterSchema = z.object({
-  email: z.email({
-    pattern: /^(?!\.)(?!.*\.\.)([a-z0-9_'+\-.]*)[a-z0-9_+-]@([a-z0-9][a-z0-9-]*\.)+[a-z]{2,}$/i,
-  }),
+  email: emailValidator,
 });
 
 export default newsletterSchema;

@@ -1,12 +1,11 @@
 import { z } from 'zod';
+import { emailValidator, commonValidators } from '../Utils/validators';
 
 const contactSchema = z.object({
-  name: z.string().min(2),
-  email: z.email({
-    pattern: /^(?!\.)(?!.*\.\.)([a-z0-9_'+\-.]*)[a-z0-9_+-]@([a-z0-9][a-z0-9-]*\.)+[a-z]{2,}$/i,
-  }),
-  linkedInUrl: z.url({ protocol: /^https$/ }),
-  message: z.string().min(5),
+  name: commonValidators.requiredString(2),
+  email: emailValidator,
+  linkedInUrl: commonValidators.url(/^https$/),
+  message: commonValidators.requiredString(5),
 });
 
 export default contactSchema;
