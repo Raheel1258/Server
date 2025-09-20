@@ -2,7 +2,7 @@
   "compilerOptions": {
     "target": "ES2022",
     "module": "CommonJS",
-    "moduleResolution": "bundler",
+    "moduleResolution": "node",
     "outDir": "./dist",
     "rootDir": "./src",
     "baseUrl": "./src",
@@ -16,7 +16,8 @@
     "allowSyntheticDefaultImports": true,
     "isolatedModules": true,
 
-    "types": ["node", "express"]
+    "types": ["node", "express"],
+    "ignoreDeprecations": "6.0"
   },
 "include": ["src/**/*.ts",],
 "exclude": ["node_modules", "dist", ".husky"]

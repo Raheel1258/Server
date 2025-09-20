@@ -1,5 +1,5 @@
-import prisma from '../DB/Connection';
 import { Request, Response } from 'express';
+import prisma from '../DB/Connection';
 import newsletterSchema from '../Schema/Newsletter.Schema';
 import { ApiResponse } from '../Utils/ApiResponse';
 import { ApiError } from '../Utils/ApiError';
