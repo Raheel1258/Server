@@ -1,9 +1,9 @@
 import { z } from 'zod';
 
-// Shared email validation pattern
+//email validation pattern
 export const emailPattern = /^(?!\.)(?!.*\.\.)([a-z0-9_'+\-.]*)[a-z0-9_+-]@([a-z0-9][a-z0-9-]*\.)+[a-z]{2,}$/i;
 
-// Reusable email validator
+// email validator
 export const emailValidator = z.email({
   pattern: emailPattern,
 });
