@@ -10,7 +10,7 @@ export const createNewsLetter = async (req: Request, res: Response, next: NextFu
     const subscription = await prisma.newsletter.create({
       data: { email },
     });
-    return res.status(201).json(new ApiResponse(201, subscription, 'Newsletter subscription successful'));
+    return res.send(201).json(new ApiResponse(201, subscription, 'Newsletter subscription successful'));
   } catch (error: unknown) {
     if (error instanceof ApiError) {
       return next(error);

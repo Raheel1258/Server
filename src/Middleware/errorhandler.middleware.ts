@@ -3,7 +3,7 @@ import { ApiError } from '../Utils/ApiError';
 
 const errorHandler = (err: Error, _req: Request, res: Response) => {
   if (err instanceof ApiError) {
-    return res.status(err.statusCode).json({
+    return res.send(err.statusCode).json({
       success: err.success,
       message: err.message,
       errors: err.errors,
@@ -11,7 +11,7 @@ const errorHandler = (err: Error, _req: Request, res: Response) => {
     });
   }
 
-  return res.status(500).json({
+  return res.send(500).json({
     success: false,
     message: "Internal Server Error",
   });
