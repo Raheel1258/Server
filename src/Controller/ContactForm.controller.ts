@@ -3,15 +3,17 @@ import contactSchema from '../Schema/Contactform.Schema';
 import { ApiResponse } from '../Utils/ApiResponse';
 import { Request, Response } from 'express';
 
-export const createContactForm = async (req:Request,res:Response) => {
+type ContactRequest = Request<Record<string, never>, Record<string, never>, { name: string; email: string; linkedInUrl: string; message: string }>;
+
+export const createContactForm = async (req: ContactRequest, res: Response) => {
   try {
     const { name, email, linkedInUrl, message } = contactSchema.parse(req.body);
     const contactForm = await prisma.contact.create({
       data: { name, email, linkedInUrl, message },
     });
 
-    res.send(201).json(new ApiResponse(201, contactForm));
+    return res.status(201).json(new ApiResponse(201, contactForm));
   } catch (error) {
-    res.send(400).json(new ApiResponse(400, error));
+    return res.status(400).json(new ApiResponse(400, error));
   }
 };
