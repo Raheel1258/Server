@@ -1,7 +1,7 @@
-import { Request, Response } from 'express';
+import { NextFunction, Request, Response } from 'express';
 import { ApiError } from '../Utils/ApiError';
 
-const errorHandler = (err: Error, _req: Request, res: Response) => {
+const errorHandler = (err: Error, _req: Request, res: Response, _next: NextFunction) => {
   if (err instanceof ApiError) {
     return res.status(err.statusCode).json({
       success: err.success,
@@ -13,8 +13,8 @@ const errorHandler = (err: Error, _req: Request, res: Response) => {
 
   return res.status(500).json({
     success: false,
-    message: 'Internal Server Error',
-    error: process.env.NODE_ENV === 'production' ? undefined : err.stack,
+    message: "Internal Server Error",
+    error: err.message || "Unknown error",
   });
 };
 
