@@ -9,12 +9,17 @@ dotenv.config({
 
 // Connect to Neon;
 async function StartServer() {
-  await PrismaConnection.$connect();
-  app.listen(process.env.PORT || 3000, () => {
-    console.log(`Server is running on port ${process.env.PORT}`);
-  });
+  try {
+    await PrismaConnection.$connect();
+    const PORT = process.env.PORT || 3000;
+
+    app.listen(PORT, () => {
+      console.log(`Server is running on port ${PORT}`);
+    });
+  } catch (error) {
+    console.error(" Error starting server:", error);
+    process.exit(1);
+  }
 }
 
-StartServer()
-  .catch((error) => console.log(error))
-  .finally(() => PrismaConnection.$disconnect());
+StartServer();
