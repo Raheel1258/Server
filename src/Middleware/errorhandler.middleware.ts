@@ -14,7 +14,6 @@ const errorHandler = (err: Error, _req: Request, res: Response, _next: NextFunct
   return res.status(500).json({
     success: false,
     message: "Internal Server Error",
-    error: err.message || "Unknown error",
   });
 };
 
