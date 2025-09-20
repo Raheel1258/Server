@@ -11,10 +11,10 @@ export const createNewsLetter = async (req: NewsLetterRequest, res: Response) =>
     const subscription = await prisma.newsletter.create({
       data: { email },
     });
-    return res.status(201).json(new ApiResponse(201, subscription, 'Newsletter subscription successful'));
+    return res.json(new ApiResponse(201, subscription, 'Newsletter subscription successful'));
   } catch (error: unknown) {
     if (error instanceof ApiError) {
-      return res.status(error.statusCode).json(new ApiResponse(error.statusCode, error.message));
+      return res.json(new ApiResponse(error.statusCode, error.message));
     }
 
     return res.status(400).json(new ApiError(400, error instanceof Error ? error.message : 'Bad Request'));

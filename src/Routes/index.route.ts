@@ -5,7 +5,7 @@ import {Request, Response} from 'express';
 
 const router = Router();
 
-router.get('/check', (req:Request, res:Response) => res.send('Hello World'));
+router.get('/check', (req:Request, res:Response) => res.json({message: 'Hello World'}));
 router.post('/form/contact', createContactForm);
 router.post('/newsletter/subscribe', createNewsLetter);
 
