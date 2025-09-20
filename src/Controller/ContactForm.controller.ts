@@ -1,17 +1,21 @@
 import prisma from '../DB/Connection';
-import { Request, Response } from 'express';
+import { Request, Response, NextFunction } from 'express';
 import contactSchema from '../Schema/Contactform.Schema';
-import { ApiResponse } from '../Utils/ApiResponse';
+import { ResponseHelper } from '../Utils/responseHelpers';
+import { ApiError } from '../Utils/ApiError';
 
-export const createContactForm = async (req: Request, res: Response) => {
+export const createContactForm = async (req: Request, res: Response, next: NextFunction) => {
   try {
     const { name, email, linkedInUrl, message } = contactSchema.parse(req.body);
     const contactForm = await prisma.contact.create({
       data: { name, email, linkedInUrl, message },
     });
 
-    res.status(201).json(new ApiResponse(201, contactForm));
-  } catch (error) {
-    res.status(400).json(new ApiResponse(400, error));
-  }
-};
+    return ResponseHelper.created(res, contactForm, 'Contact form submitted successfully');
+  } catch (error: unknown) {
+    if (error instanceof ApiError) {
+      return next(error);
+    }
+    return next(new ApiError(400, error instanceof Error ? error.message : 'Bad Request'));
+    }
+  };

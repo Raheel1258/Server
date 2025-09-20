@@ -1,7 +1,7 @@
 import prisma from '../DB/Connection';
 import { Request, Response, NextFunction } from 'express';
 import newsletterSchema from '../Schema/Newsletter.Schema';
-import { ApiResponse } from '../Utils/ApiResponse';
+import { ResponseHelper } from '../Utils/responseHelpers';
 import { ApiError } from '../Utils/ApiError';
 
 export const createNewsLetter = async (req: Request, res: Response, next: NextFunction) => {
@@ -10,16 +10,11 @@ export const createNewsLetter = async (req: Request, res: Response, next: NextFu
     const subscription = await prisma.newsletter.create({
       data: { email },
     });
-    return res.status(201).json(new ApiResponse(201, subscription, 'Newsletter subscription successful'));
+    return ResponseHelper.created(res, subscription, 'Newsletter subscription successful');
   } catch (error: unknown) {
     if (error instanceof ApiError) {
       return next(error);
     }
-    
-    if ((error as { code?: string })?.code === 'P2002') {
-      return next(new ApiError(409, 'Email already subscribed'));
-    }
-
     return next(new ApiError(400, error instanceof Error ? error.message : 'Bad Request'));
   }
 };
