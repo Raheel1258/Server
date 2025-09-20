@@ -12,8 +12,8 @@ export const createContactForm = async (req: ContactRequest, res: Response) => {
       data: { name, email, linkedInUrl, message },
     });
 
-    return res.json(new ApiResponse(201, contactForm));
+    return res.status(201).json(new ApiResponse(201, contactForm));
   } catch (error) {
-    return res.json(new ApiResponse(400, error));
+    return res.status(400).json(new ApiResponse(400, error));
   }
 };
