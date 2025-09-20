@@ -1,4 +1,4 @@
-import type { Request, Response, NextFunction } from "express";
+import { Response } from "express";
 import { ApiResponse } from './ApiResponse';
 
 //Response helpers
@@ -29,10 +29,3 @@ export class ResponseHelper {
     return res.status(500).json(new ApiResponse(500, error, errorMessage));
   }
 }
-
-// Error handling helper for async controllers
-export const asyncHandler = (fn: (req: Request, res: Response, next: NextFunction) => Promise<void>) => {
-  return (req: Request, res: Response, next: NextFunction) => {
-    Promise.resolve(fn(req, res, next)).catch((err) => next(err));
-  };
-};
